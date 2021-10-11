@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react"
+import MyButton from "./components/MyButton/MyButton"
+import MyInput from "./components/MyInput/MyInput"
+function App(){
+    return (
+      <div class="container">
+       
+          <MyInput className="Input_100" ></MyInput>
+          <li >
+            <MyButton className="MyButtonOk" id="ok">Okey </MyButton>
+            <MyButton className="MyButtonCancel" id="cancel">Cancel </MyButton>
+         </li>
+      </div>
+      
+    );
+    
 }
+/* let el1 = document.getElementById("ok");
+let el2 = document.getElementById("cancel");
+el1.addEventListener(('click'),function(){
+  console.log('okey');
+})
+el2.addEventListener(('click'),function(){
+  console.log('cancel');
+}) */
 
 export default App;
