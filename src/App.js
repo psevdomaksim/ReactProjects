@@ -13,7 +13,7 @@ function App(){
       </div>
       
     );
-    
+ 
 }
 /* let el1 = document.getElementById("ok");
 let el2 = document.getElementById("cancel");

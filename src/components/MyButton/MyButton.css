@@ -1,0 +1,23 @@
+.MyButtonOk{
+    width:4em;
+    height:2.3em;
+    background-color: chartreuse;
+    border:1px solid green;
+    border-radius: 7px;
+    color:white;
+    text-align: center;
+    
+    display: inline-block;
+    font-size: 20px;
+}
+.MyButtonCancel{
+    width:4em;
+    height:2.3em;
+    background-color: rgb(167, 32, 22);
+    border:1px solid rgb(253, 3, 3);
+    border-radius: 7px;
+    color:white;
+    text-align: center;
+    float: right;
+    font-size: 20px;
+}
