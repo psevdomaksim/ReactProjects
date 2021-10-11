@@ -3,7 +3,7 @@ import "./MyInput.css"
 
 const MyInput = (props) => {
     return(
-        <input type="text" className={props.className}/>
+        <input type="text" className={props.className} value={props.children}/>
        
        
     )
