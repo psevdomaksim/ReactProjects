@@ -1,0 +1,70 @@
+.success{
+    width:175px;
+    height:175px;
+    background-color: green;
+    font-size:30px;
+    border: 1px solid lime;
+    text-align: center;
+    color: white;
+    margin:auto;
+    line-height:75px;
+    margin-right:5px;
+    margin-bottom:5px;
+    border-radius:50%;
+}
+.secondary{
+    width:175px;
+    height:175px;
+    background-color: rgb(89, 15, 185);
+    font-size:30px;
+    border: 1px solid rgba(17, 0, 255, 0.959);
+    text-align: center;
+    color: white;
+    margin:auto;
+    line-height:75px;
+    margin-right:5px;
+    margin-bottom:5px;
+    border-radius:50%;
+}
+.primary{
+    width:175px;
+    height:175px;
+    background-color: rgb(223, 143, 23);
+    font-size:30px;
+    border: 1px solid rgba(156, 189, 10, 0.959);
+    text-align: center;
+    color: white;
+    margin:auto;
+    line-height:75px;
+    margin-right:5px;
+    margin-bottom:5px;
+    border-radius:50%;
+}
+.mom{
+    width:175px;
+    height:175px;
+    background-color: rgb(209, 46, 25);
+    font-size:30px;
+    border: 1px solid rgba(102, 9, 5, 0.959);
+    text-align: center;
+    color: white;
+    margin:auto;
+    line-height:75px;
+    margin-right:5px;
+    margin-bottom:5px;
+    border-radius:50%;
+}
+.pudge{
+    width:175px;
+    height:175px;
+    background-color: rgb(158, 76, 44);
+    font-size:30px;
+    border: 1px solid rgba(45, 69, 121, 0.959);
+    text-align: center;
+    color: white;
+    margin:auto;
+    line-height:75px;
+    margin-right:5px;
+    margin-bottom:5px;
+    border-radius:50%;
+}
