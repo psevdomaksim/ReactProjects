@@ -1,0 +1,41 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    list-style-type:none;
+    width: 25em;
+    height:6.5em;
+    border:1px solid rgb(165, 165, 165);
+    margin:auto;
+    padding:15px;
+}
+
+
+.Input_100{
+    height:3em;
+    border:1px solid rgb(165, 165, 165);
+    border-radius:5px;
+    color:rgb(110, 110, 110);
+    margin-bottom:20px;
+    display: inline-block;
+    font-size: 1em;
+   
+}
+.Input_50{
+    width:50%;
+    height:3em;
+  
+    border:1px solid rgb(165, 165, 165);
+    border-radius:5px;
+    color:rgb(110, 110, 110);
+    display: inline-block;
+    font-size: 1em;
+}
+.Input_25{
+    width:25%;
+    height:3em;
+    border:1px solid rgb(165, 165, 165);
+    border-radius:5px;
+    color:rgb(110, 110, 110);
+    display: inline-block;
+    font-size: 80%;
+}
