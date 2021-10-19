@@ -6,13 +6,21 @@ function App(){
   const [showFormUser, setShowFormUser] = useState(false);
   const [users, setUsers] = useState([
     {
+      id:1,
       name: "pudge",
       phone: "chin chopa)"
 
     },
     {
+      id:2,
       name: "terrorblade",
       phone: "666"
+
+    },
+    {
+      id:3,
+      name: "collapse",
+      phone: "0792"
 
     },
 
@@ -22,6 +30,7 @@ function App(){
     phone: ""
     }
   );
+
 
   const onChange = (event) =>{
     if(event.target.id =="name"){
@@ -42,8 +51,12 @@ function App(){
       phone:'',
     });
   }
+ const deleteUser=(id)=>{
+    setUsers(users.filter((user) => user.id !== id))
 
-  console.log(user);
+
+ };
+
     return (
       <div className="App">
         <NavBar/>
@@ -102,7 +115,9 @@ function App(){
          { users && users.map((user)=> <tr>
             <td>{user.name}</td>
             <td>{user.phone}</td>
-            <td>DELETE</td>
+            <td> <i className="material-icons" 
+             onClick={()=>deleteUser(user.id)}
+             >delete </i></td>
           </tr>
           )}
         
