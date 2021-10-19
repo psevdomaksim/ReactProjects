@@ -1,26 +1,26 @@
 import React, { useState } from "react"
-import NavBar from "./components/Verstka/NavBar"
-
+import NavBar from "./components/NavBar"
+import UserList from "./components/UserList"
 
 function App(){
   const [showFormUser, setShowFormUser] = useState(false);
   const [users, setUsers] = useState([
     {
       id:1,
-      name: "pudge",
+      name: "torontotokyo",
       phone: "chin chopa)"
 
     },
     {
       id:2,
-      name: "terrorblade",
-      phone: "666"
+      name: "yatoro",
+      phone: ")))"
 
     },
     {
       id:3,
       name: "collapse",
-      phone: "0792"
+      phone: "taxi"
 
     },
 
@@ -36,7 +36,7 @@ function App(){
     if(event.target.id =="name"){
       setUser({...user, name: event.target.value});
     }
-    else {
+    else {       
       setUser({...user, phone: event.target.value});
       console.log('test')
     }
@@ -44,15 +44,20 @@ function App(){
       
   }
 
-  const addUser =()=>{
+  const addUser =  () =>{
+  
+    setUser({...user,id:Math.random() * 1})
     setUsers([...users,user]);
-    setUser({
-      name:'',
-      phone:'',
-    });
+    clear();
   }
+
+  const clear = () =>{
+    setUser({name:"",phone:""})
+  }
+
  const deleteUser=(id)=>{
-    setUsers(users.filter((user) => user.id !== id))
+   const confirm = window.confirm("Ты действительно хочешь удалить?")
+   if(confirm) setUsers(users.filter((user) => user.id !== id))
 
 
  };
@@ -95,37 +100,16 @@ function App(){
                 class="validate"
                 placeholder="Enter Phone"
                 onChange={onChange}/>
-              <a className="waves-effect waves-light right btn m-1">Cancel</a>
+              <a className="waves-effect waves-light right btn m-1"
+              onClick={()=>clear()}>
+                Cancel</a>
             </div>
             </> }
+            </div>
           </div>
+           <UserList search removeUser={deleteUser}>{users}</UserList>        
+         </div>
         </div>
-
-
-        <table>
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-         { users && users.map((user)=> <tr>
-            <td>{user.name}</td>
-            <td>{user.phone}</td>
-            <td> <i className="material-icons" 
-             onClick={()=>deleteUser(user.id)}
-             >delete </i></td>
-          </tr>
-          )}
-        
-        </tbody>
-      </table>
-            
-      </div>
-      </div>
       
       
     );
