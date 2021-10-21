@@ -1,18 +1,35 @@
-import React from "react"
-
+import React, {useEffect, useState} from "react"
 
 const UserList = (props) =>{
-    const onChange =(event) =>{
-        console.log(event.target.value)
+    const[filter,setFilter] = useState(props.children)
+
+    useEffect(()=>{
+        setFilter(props.children)
+    },[props.children])
+
+    const getSearch =()=>{
+        if(filter){
+            return filter
+        }
+        return props.children
 
     }
+    const userSearch = getSearch();
+
+    const onChange =(event) =>{
+        setFilter(props.children.filter((user)=>{
+           return user.name.toLowerCase().includes(event.target.value.toLowerCase())
+        })
+          
+        
+  )}
     return(
         <>
-       {props.search && <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">search</i>
+       {props.search && <div className="row">
+            <form className="col s12">
+                <div className="row">
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">search</i>
                         <textarea onChange={onChange} id="icon_prefix2" class="materialize-textarea"></textarea>
                     </div>
                 </div>
@@ -30,7 +47,7 @@ const UserList = (props) =>{
         </thead>
 
         <tbody>
-         { props.children && props.children.map((user)=> <tr>
+         { props.children && userSearch.map((user)=> <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.phone}</td>
             <td> <i className="material-icons" 
