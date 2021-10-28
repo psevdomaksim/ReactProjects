@@ -1,130 +1,138 @@
-import React, { useState } from "react"
-import UserList from "../components/UserList"
+import React, { useState } from "react";
+import MyModal from "../components/MyModal/MyModal";
+import UserList from "../components/UserList";
 
-function Users(){
+function Users() {
   const [showFormUser, setShowFormUser] = useState(false);
   const [users, setUsers] = useState([
     {
-      id:1,
+      id: 1,
       name: "torontotokyo",
-      phone: "chin chopa)"
-
+      phone: "chin chopa)",
     },
     {
-      id:2,
+      id: 2,
       name: "yatoro",
-      phone: ")))"
-
+      phone: ")))",
     },
     {
-      id:3,
+      id: 3,
       name: "collapse",
-      phone: "taxi"
-
+      phone: "taxi",
     },
     {
-      id:4,
+      id: 4,
       name: "miroslaw",
-      phone: "666"
-
+      phone: "666",
     },
     {
-      id:5,
+      id: 5,
       name: "miposhka",
-      phone: "gryaaa"
-
+      phone: "gryaaa",
     },
-
-  ])
+  ]);
   const [user, setUser] = useState({
     name: "",
-    phone: ""
-    }
-  );
-
-
-  const onChange = (event) =>{
-    if(event.target.id =="name"){
-      setUser({...user, name: event.target.value});
-    }
-    else {       
-      setUser({...user, phone: event.target.value});
-      console.log('test')
-    }
+    phone: "",
+  });
   
-      
-  }
 
-  const addUser =  () =>{
-  
-    setUser({...user,id:Math.random() * 1})
-    setUsers([...users,user]);
+  const onChange = (event) => {
+    if (event.target.id == "name") {
+      setUser({ ...user, name: event.target.value });
+    } else {
+      setUser({ ...user, phone: event.target.value });
+      console.log("test");
+    }
+  };
+
+  const addUser = () => {
+    setUser({ ...user, id: Math.random() * 1 });
+    setUsers([...users, user]);
     clear();
-  }
+  };
 
-  const clear = () =>{
-    setUser({name:"",phone:""})
-  }
+  const clear = () => {
+    setUser({ name: "", phone: "" });
+  };
 
- const deleteUser=(id)=>{
-   const confirm = window.confirm("Ты действительно хочешь удалить?")
-   if(confirm) setUsers(users.filter((user) => user.id !== id))
- };
+const [showModal,setShowModal] = useState(false);
 
+  const deleteUser = (id) => {
+    const confirm = window.confirm("Ты действительно хочешь удалить?");
+    if (confirm) setUsers(users.filter((user) => user.id !== id));
+  };
 
+  return (
+    <div className="App">
+      <div className="container">
+     
+        <MyModal visible={showModal} setVisible={setShowModal}>
+        {
+          <>
+          <div className="input-field col s6">
+            <i className="material-icons prefix m-2">account_circle</i>
+            <input
+              id="name"
+              type="text"
+              class="validate"
+              value={user.name}
+              placeholder="Enter Name"
+              onChange={onChange}
+            />
+           
+          </div>
+          <div className="input-field col s6">
+            
+          
 
+            <i className="material-icons prefix">phone</i>
+            <input
+              id="phone"
+              type="tel"
+              value={user.phone}
+              class="validate"
+              placeholder="Enter Phone"
+              onChange={onChange}
+            />
+             <a
+              className="waves-effect waves-light btn m-1"
+              onClick={() => addUser()}
+            >
+              Add
+            </a>
+            <a
+              className="waves-effect waves-light right btn m-1"
+              onClick={() => clear()}
+            >
+              Cancel
+            </a>
+          </div>
+        </>
+        }
+        </MyModal>
 
-    return (
-      <div className="App">
-        <div className="container">
         <div className="row m-1">
           <div className="col s4">
-            <a class="waves-effect waves-light btn" 
-            onClick={()=>setShowFormUser(!showFormUser)}
-            >Add user</a>
+            <a
+              class="waves-effect waves-light btn"
+              onClick={() => setShowModal(true)}
+            >
+              Add user
+            </a>
           </div>
-
 
           <div className="col s8">
-            {showFormUser &&
-            <>
-             <div className="input-field col s6">
-              <i className="material-icons prefix">account_circle</i>
-              <input
-                id="name" 
-                type="text"
-                class="validate"
-                value={user.name}
-                placeholder="Enter Name"
-               onChange={onChange}
-                 />
-              <a className="waves-effect waves-light btn m-1"
-              onClick={()=>addUser()}
-              >Add</a>
-            </div>
-            <div className="input-field col s6">
-              <i className="material-icons prefix">phone</i>
-              <input 
-                id="phone" 
-                type="tel" 
-                value={user.phone}
-                class="validate"
-                placeholder="Enter Phone"
-                onChange={onChange}/>
-              <a className="waves-effect waves-light right btn m-1"
-              onClick={()=>clear()}>
-                Cancel</a>
-            </div>
-            </> }
-            </div>
-          </div>
-           <UserList search removeUser={deleteUser}>{users}</UserList>        
-         </div>
-        </div>
-      
-      
-    );
-}
+           
 
+          </div>
+        </div>
+        <UserList search removeUser={deleteUser}>
+          {users}
+        </UserList>
+      </div>
+    </div>
+  );
+}
 
 export default Users;
