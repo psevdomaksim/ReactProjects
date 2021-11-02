@@ -46,8 +46,10 @@ const UserList = (props) => {
       <table>
         <thead>
           <tr>
+            <th>Username</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Email</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -56,8 +58,10 @@ const UserList = (props) => {
           {props.children &&
             userSearch.map((user) => (
               <tr key={user.id}>
+                <td>{user.username}</td>
                 <td>{user.name}</td>
                 <td>{user.phone}</td>
+                <td>{user.email}</td>
                 <td>
                   {" "}
                   <i
