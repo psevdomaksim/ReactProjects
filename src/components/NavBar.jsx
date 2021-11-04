@@ -11,7 +11,7 @@ function NavBar(){
                 <ul id="nav-mobile" className="right">
                     <li><Link to="./users">Users</Link></li>
                     <li><Link to = "./devices">Devices</Link></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li><Link to = "./posts">Posts</Link></li>
                 </ul>
                 </div>
             </nav>
