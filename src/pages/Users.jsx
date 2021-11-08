@@ -65,7 +65,6 @@ const [showModal,setShowModal] = useState(false);
   return (
     <div className="App">
       <div className="container">
-        <button onClick={()=>fetchUsers()}>fetch Users</button>
         <MyModal visible={showModal} setVisible={setShowModal}>
         {
           <>
