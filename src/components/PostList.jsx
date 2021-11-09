@@ -7,10 +7,6 @@ const PostList = (props) => {
     setFilter(props.children);
   }, [props.children]);
 
-
-const [showModal,setShowModal] = useState(false);
-
-
   const getSearch = () => {
     if (filter) {
       return filter;
@@ -29,13 +25,28 @@ const [showModal,setShowModal] = useState(false);
     );
   };
 
+  const [post, setPost] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  
-
-  
+  const onShowPost = (id) => {
+    setPost(props.children.filter((post) => post.id === id));
+    setShowModal(true);
+  };
+  console.log(post[0]);
   return (
     <>
-      {(
+      <MyModal visible={showModal} setVisible={setShowModal}>
+          {post &&
+           <div>
+           <h5>{post[0].title}</h5>
+           <div className="content">{post[0].body}</div>
+         </div>
+          }
+         
+        
+      </MyModal>
+      ;
+      {
         <div className="row">
           <form className="col s12">
             <div className="row">
@@ -50,56 +61,28 @@ const [showModal,setShowModal] = useState(false);
             </div>
           </form>
         </div>
-      )}
-      
-      
-    <div className = "custom_container">
-    
-    
-   
-
-        { props.children &&
-            postSearch.map((post) => (
-             
-            <div className="post" key={post.id}
-            
-            onClick={() =>
-              <MyModal visible={showModal} setVisible={setShowModal} >
-                  <h5>
-                    {post.title} 
-                      {" "}
-                          <i
-                            className="material-icons"
-                            onClick={() => props.removePost(post.id)}
-                          >
-                            delete{" "}
-                          </i>
-                  </h5>
-      
-                        <div className="content">{post.body}</div>
-              
-             </MyModal>
-              }
+      }
+      <div className="custom_container">
+        {props.children &&
+          postSearch.map((post) => (
+            <div
+              className="post"
+              key={post.id}
+              onClick={() => onShowPost(post.id)}
             >
-              
-              <h5>{post.title} 
-              {" "}
-                  <i
-                    className="material-icons"
-                    onClick={() => props.removePost(post.id)}
-                  >
-                    delete{" "}
-                  </i>
-                  </h5>
-
-                <div className="content">{post.body}</div>
-     
+              <h5>
+                {post.title}{" "}
+                <i
+                  className="material-icons"
+                  onClick={() => props.removePost(post.id)}
+                >
+                  delete{" "}
+                </i>
+              </h5>
+              <div className="content">{post.body}</div>
             </div>
-        
           ))}
-        
       </div>
-      
     </>
   );
 };
