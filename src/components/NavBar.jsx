@@ -4,7 +4,11 @@ import AuthContext from "../context";
 
 
 function NavBar(){
-    const{isAuth,setIsAuth} = useContext(AuthContext);
+    const{setIsAuth} = useContext(AuthContext);
+    const logout = () =>{
+        localStorage.clear();
+        setIsAuth(false)
+    }
     return (
      
             <nav>

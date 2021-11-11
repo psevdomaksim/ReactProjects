@@ -3,20 +3,29 @@ import MyModal from "../components/MyModal/MyModal";
 import PostList from "../components/PostList";
 import Loader from"react-loader-spinner"
 import axios from 'axios';
-
-function Posts(props) {
+import ReactPaginate from "react-paginate";
+function Posts() {
     
-
-
+const[page,setPage] = useState(1);
+const limit = 10;
+const pageCount = 100/limit;
+const pageChange = (page)=>{
+  setPage(page.selected+1)
+}
     const fetchPosts = async () =>{
-        const posts = await axios.get("https://jsonplaceholder.typicode.com/posts");
+        const posts = await axios.get("https://jsonplaceholder.typicode.com/posts",{
+          params:{
+            _limit:limit,
+            _page: page,
+          }
+        });
         setPosts(posts.data)
      }
     
 
      useEffect(()=>{
       fetchPosts();
-    },[])
+    },[page])
       
     const [posts, setPosts] = useState(null);
     const [post, setPost] = useState({
@@ -126,7 +135,16 @@ function Posts(props) {
         </PostList>
              
          </div>
-
+        < ReactPaginate
+        className="pagination unselectable "
+        activeClassName="active"
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={pageChange}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<"
+      />
 
 
       </div>
