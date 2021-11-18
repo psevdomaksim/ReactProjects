@@ -39,7 +39,14 @@ code {
   width: 100%;
   height: 150px;
   border-radius: 5px;
-  margin-top:10px;
+  
+  box-shadow: 0 0 5px rgb(172, 109, 151);
+}
+.postModal{
+  background: linear-gradient(to bottom right, yellow, pink);
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
   box-shadow: 0 0 5px rgb(172, 109, 151);
 }
 .post h5{
@@ -71,8 +78,9 @@ code {
   opacity: 1;
   z-index: 1003;
   display:block;
-  top: 10%;
+  top: 30%;
   transform: scaleX(1) scaleY(1);
+  border-radius: 5px;
 }
 
 .loginModal{
@@ -90,4 +98,13 @@ code {
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
+  text-align: center;
+}
+.material-icons{
+  cursor: pointer
+}
+.trigger{
+width:100%;
+height:20px;
+
 }

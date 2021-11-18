@@ -52,7 +52,7 @@ function Users() {
   };
 
   const clear = () => {
-    setUser({ name: "", phone: "" });
+    setUser({username:"", name: "", phone: "", email:""});
   };
 
 const [showModal,setShowModal] = useState(false);
@@ -132,7 +132,7 @@ const [showModal,setShowModal] = useState(false);
             </a>
             <a
               className="waves-effect waves-light right btn m-1"
-              onClick={() => clear()}
+              onClick={() => setShowModal(false)}
             >
               Cancel
             </a>

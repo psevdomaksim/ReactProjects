@@ -1,33 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MyModal from "../components/MyModal/MyModal";
 import PostList from "../components/PostList";
 import Loader from"react-loader-spinner"
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
 function Posts() {
-    
+const trigger = useRef(null);    
+const observer = useRef(null);
+const [loadData, setLoadData] = useState(true);            
 const[page,setPage] = useState(1);
 const limit = 10;
 const pageCount = 100/limit;
+
 const pageChange = (page)=>{
   setPage(page.selected+1)
 }
-    const fetchPosts = async () =>{
-        const posts = await axios.get("https://jsonplaceholder.typicode.com/posts",{
+    const fetchPosts = async () =>{ 
+      setLoadData(true);
+        const postFecthed = await axios.get("https://jsonplaceholder.typicode.com/posts",{
           params:{
             _limit:limit,
             _page: page,
           }
         });
-        setPosts(posts.data)
+        setPosts([...posts,...postFecthed.data])
+        setLoadData(false);
      }
     
 
      useEffect(()=>{
       fetchPosts();
     },[page])
-      
-    const [posts, setPosts] = useState(null);
+      useEffect(()=>{
+        if(loadData) return;
+        if(observer.current) observer.current.disconnect();
+        if(page>10) return;
+          const callback = function(entries, observer){
+            if (entries[0].isIntersecting){
+              setPage(page+1)
+            }
+          }
+          observer.current = new IntersectionObserver(callback);
+          observer.current.observe(trigger.current)
+      },[loadData])
+    const [posts, setPosts] = useState([]);
     const [post, setPost] = useState({
         title: "",
         body: ""
@@ -67,7 +83,7 @@ const pageChange = (page)=>{
       <MyModal visible={showModal} setVisible={setShowModal}>
         {
           <>
-
+      
           <div className="input-field col s6">
             <i className="material-icons prefix">drag_handle</i>
             <input
@@ -103,7 +119,7 @@ const pageChange = (page)=>{
             </a>
             <a
               className="waves-effect waves-light right btn m-1"
-              onClick={() => clear()}
+              onClick={() => setShowModal(false)}
             >
               Cancel
             </a>
@@ -135,16 +151,19 @@ const pageChange = (page)=>{
         </PostList>
              
          </div>
-        < ReactPaginate
-        className="pagination unselectable "
-        activeClassName="active"
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={pageChange}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="<"
-      />
+         <div ref={trigger} className="trigger"></div>
+       {/*  < ReactPaginate
+              className="pagination unselectable"
+              nextClassName="material-icons"
+              previousClassname="material-icons"
+              activeClassName="active"
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={pageChange}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="<"
+      /> */}
 
 
       </div>

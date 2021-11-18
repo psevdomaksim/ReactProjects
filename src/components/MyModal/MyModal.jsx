@@ -5,7 +5,7 @@ const MyModal = ({ visible, setVisible, children }) => {
   return(
   <>
       <div className={visible?"modal open":"modal"}>
-       <div className="modal-content ">
+       <div className="modal-content">
        <i className="material-icons right"
                onClick={()=>setVisible(false)}>close
                </i>
@@ -13,7 +13,7 @@ const MyModal = ({ visible, setVisible, children }) => {
        </div> 
 
      </div>
-     <div className={visible?"modal-overlay open-overlay":"modal-overlay"}></div>
+     <div className={visible?"modal-overlay open-overlay":"modal-overlay"} onClick={()=>setVisible(false)}></div>
      </>
   );
 };

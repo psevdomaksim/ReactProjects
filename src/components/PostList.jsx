@@ -37,15 +37,16 @@ const PostList = (props) => {
     <>
       <MyModal visible={showModal} setVisible={setShowModal}>
           {post &&
-           <div>
-           <h5>{post[0].title}</h5>
-           <div className="content">{post[0].body}</div>
+          <div className="postModal">
+              <div className="custom_container">
+              <h5>{post[0].title}</h5>
+              <div className="content">{post[0].body}</div>
+            </div>
          </div>
           }
          
         
       </MyModal>
-      ;
       {
         <div className="row">
           <form className="col s12">
@@ -55,14 +56,14 @@ const PostList = (props) => {
                 <textarea
                   onChange={onChange}
                   id="icon_prefix2"
-                  class="materialize-textarea"
-                ></textarea>
+                  className="materialize-textarea">
+                  </textarea>
               </div>
             </div>
           </form>
         </div>
       }
-      <div className="custom_container">
+      <div className="content">
         {props.children &&
           postSearch.map((post) => (
             <div
